@@ -1,0 +1,28 @@
+[
+    {
+        "regExp": "^test2",
+        "transform": {
+            "sizes": [100, 200, 300],
+            "aspectRatio": 1.5
+        }
+    },
+    {
+        "regExp": "^test",
+        "transform": {
+            "sizes": [100, 200, 300],
+            "aspectRatio": 1.5
+        },
+        "formats": ["initial", "webp", "avif"]
+    },
+    {
+        "regExp": "img.jpg$",
+        "transform": {
+            "sizes": [100, 200, 300],
+            "aspectRatio": 1.5
+        }
+    },
+    {
+        "regExp": ".*",
+        "formats": ["initial"]
+    }
+]
