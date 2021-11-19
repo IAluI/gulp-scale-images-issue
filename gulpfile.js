@@ -8,10 +8,10 @@ const glob = require('glob');
 const IMG_GLOB = '**/*.{jpeg,jpg,png,webp}';
 const SRC = 'images';
 const DEST = 'public';
-const IMG_CALLBACK = 'callback';
+const IMG_ARRAY = 'array';
 const IMG_PROMISE = 'promise';
 
-gulp.task('build:image-callback', () => {
+gulp.task('build:image-array', () => {
     const createImages = (file, cb) => {
         readMetadata(file, (err, meta) => {
             if (err) {
@@ -49,7 +49,7 @@ gulp.task('build:image-callback', () => {
         .src(`${SRC}/${IMG_GLOB}`)
         .pipe(flatMap(createImages))
         .pipe(scaleImages())
-        .pipe(gulp.dest(`${DEST}/${IMG_CALLBACK}`));
+        .pipe(gulp.dest(`${DEST}/${IMG_ARRAY}`));
 });
 
 gulp.task('build:image-promise', () => {
@@ -104,8 +104,8 @@ gulp.task('clean', () => {
 
 gulp.task('count', (cb) => {
     console.log(
-        `Task "build:image-callback" return ${
-            glob.sync(`${DEST}/${IMG_CALLBACK}/${IMG_GLOB}`).length
+        `Task "build:image-array" return ${
+            glob.sync(`${DEST}/${IMG_ARRAY}/${IMG_GLOB}`).length
         } files.`
     );
     console.log(
@@ -118,5 +118,5 @@ gulp.task('count', (cb) => {
 
 gulp.task(
     'default',
-    gulp.series('clean', 'build:image-callback', 'build:image-promise', 'count')
+    gulp.series('clean', 'build:image-array', 'build:image-promise', 'count')
 );
